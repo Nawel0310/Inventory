@@ -1,0 +1,35 @@
+#contenedor-inicio {
+}
+
+footer {
+  font-family: Alata, sans-serif;
+  background-color: #232418!important;
+}
+
+#div-inicio {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#contenedor-inicio {
+  display: flex;
+  justify-content: center;
+}
+
+.col-boton {
+  display: flex;
+  justify-content: center;
+}
+
+.fila-botones {
+  margin-bottom: 16px;
+}
+
+#inicio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 603px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../../assets/img/inventory3.png") center / cover no-repeat;
+}
+
