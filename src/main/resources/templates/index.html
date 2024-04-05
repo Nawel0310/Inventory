@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+<html data-bs-theme="light" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -37,16 +37,16 @@
             </div>
             <div class="container contenedor-botones" data-aos="fade-up" data-aos-delay="100">
                 <div class="row fila-botones">
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Lista de Categorias</button></div>
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Agregar Categoría</button></div>
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Lista de Productos</button></div>
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Agregar Producto</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/categorias}">Lista de Categorias</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/categorias/nuevo}">Agregar Categoría</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/productos}">Lista de Productos</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/productos/nuevo}">Agregar Producto</button></div>
                 </div>
                 <div class="row fila-botones">
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Lista de Marcas</button></div>
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Agregar Marca</button></div>
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Lista de Usuarios</button></div>
-                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button">Agregar Usuario</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/marcas}">Lista de Marcas</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/marcas/nuevo}">Agregar Marca</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/usuarios}">Lista de Usuarios</button></div>
+                    <div class="col-md-3 col-boton"><button class="btn btn-primary btn-inicio" type="button" th:href="@{/usuarios/nuevo}">Agregar Usuario</button></div>
                 </div>
             </div>
         </div>
