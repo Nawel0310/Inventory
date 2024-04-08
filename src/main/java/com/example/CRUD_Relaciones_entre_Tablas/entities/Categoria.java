@@ -9,7 +9,6 @@ import lombok.experimental.Accessors;
 @Entity
 @Data
 @AllArgsConstructor
-@Accessors(chain = true)
 @NoArgsConstructor
 public class Categoria {
     @Id
@@ -18,6 +17,7 @@ public class Categoria {
     @Column(length=45, nullable = false, unique=true)
     private String nombre;
 
-
-
+    public Categoria(String nombre) {
+        this.nombre = nombre;
+    }
 }
