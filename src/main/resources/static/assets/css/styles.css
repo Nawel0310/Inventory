@@ -16,6 +16,11 @@ footer {
   margin-bottom: 40px;
 }
 
+#div-inicio-producto {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 #contenedor-inicio {
   display: flex;
   justify-content: center;
@@ -45,5 +50,14 @@ footer {
   align-items: center;
   height: 603px;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/assets/img/inventory1.png") center / cover no-repeat;
+}
+
+#inicio-producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: center;
+  height: 603px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/assets/img/inventory2.png") center / cover no-repeat;
 }
 

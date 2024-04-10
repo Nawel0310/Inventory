@@ -70,6 +70,11 @@
   margin-top: 10px;
 }
 
+#div-hero-producto {
+  font-family: Alata, sans-serif;
+  margin-top: 10px;
+}
+
 .navbar {
   font-family: Alata, sans-serif;
   background: #595D3F!important;
@@ -188,6 +193,14 @@ hr {
 }
 
 .input-nombre {
+  border-style: none;
+}
+
+.input-categoria {
+  border-style: none;
+}
+
+.input-number {
   border-style: none;
 }
 
