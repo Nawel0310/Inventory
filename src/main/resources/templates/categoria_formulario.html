@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+<html data-bs-theme="light" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -86,8 +86,12 @@
             </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
-            <form><label class="form-label" style="font-size: 20px;">Nombre de la Categoría:&nbsp;</label><input class="form-control input-nombre" type="text">
-                <div id="botones-formulario-categoria"><button class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button><button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>
+            <form th:action="@{categorias/guardar}" th:object="${categoria}" method="post">
+                <label class="form-label" style="font-size: 20px;">Nombre de la Categoría:&nbsp;</label>
+                <input class="form-control input-nombre" type="text" th:field="*{nombre}" required>
+                <div id="botones-formulario-categoria">
+                    <button class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button>
+                    <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>
             </form>
         </div>
     </section>
