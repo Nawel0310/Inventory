@@ -6,7 +6,12 @@ footer {
   background-color: #232418!important;
 }
 
-#div-inicio {
+#div-inicio-index {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#div-inicio-categoria {
   text-align: center;
   margin-bottom: 40px;
 }
@@ -25,7 +30,15 @@ footer {
   margin-bottom: 16px;
 }
 
-#inicio {
+#inicio-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 603px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../../assets/img/inventory3.png") center / cover no-repeat;
+}
+
+#inicio-categoria {
   display: flex;
   flex-direction: column;
   justify-content: initial;

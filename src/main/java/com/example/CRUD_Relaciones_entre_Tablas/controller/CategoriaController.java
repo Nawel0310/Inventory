@@ -21,4 +21,10 @@ public class CategoriaController {
         return "categorias";
     }
 
+    @GetMapping("/categorias/nuevo")
+    public String mostrarFormularioDeNuevaCategoria (Model modelo){
+        modelo.addAttribute("categoria",new Categoria());
+        return "categoria_formulario";
+    }
+
 }
