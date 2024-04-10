@@ -35,7 +35,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   height: 603px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../../assets/img/inventory3.png") center / cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/assets/img/inventory3.png") center / cover no-repeat;
 }
 
 #inicio-categoria {
@@ -44,6 +44,6 @@ footer {
   justify-content: initial;
   align-items: center;
   height: 603px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../../assets/img/inventory1.png") center / cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/assets/img/inventory1.png") center / cover no-repeat;
 }
 

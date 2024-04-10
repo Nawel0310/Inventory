@@ -176,8 +176,35 @@ hr {
 }
 
 .formulario {
-  background: var(--bs-emphasis-color);
+  background: #7A7D57;
   width: 316px;
   padding: 20px;
+  border-style: none;
+  border-radius: 16px;
+  font-family: Alata, sans-serif;
+  font-weight: bold;
+  color: var(--bs-emphasis-color);
+  box-shadow: 3px 3px #595D3F;
+}
+
+.input-nombre {
+  border-style: none;
+}
+
+#botones-formulario-categoria {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+#boton-cancelar {
+  width: 45%;
+  box-shadow: 3px 3px var(--bs-btn-hover-border-color);
+}
+
+#boton-envio {
+  width: 45%;
+  box-shadow: 3px 3px 0px var(--bs-btn-hover-border-color);
 }
 
