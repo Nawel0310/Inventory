@@ -1,4 +1,4 @@
-package com.example.CRUD_Relaciones_entre_Tablas.entities;
+package com.example.CRUD_Relaciones_entre_Tablas.entities.Categoria;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

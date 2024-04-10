@@ -1,6 +1,6 @@
 package com.example.CRUD_Relaciones_entre_Tablas.controller;
 
-import com.example.CRUD_Relaciones_entre_Tablas.entities.Categoria;
+import com.example.CRUD_Relaciones_entre_Tablas.entities.Categoria.Categoria;
 import com.example.CRUD_Relaciones_entre_Tablas.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
