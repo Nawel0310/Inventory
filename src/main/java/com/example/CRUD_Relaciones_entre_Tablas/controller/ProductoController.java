@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -36,11 +37,39 @@ public class ProductoController {
         return "producto_formulario";
     }
 
-    @PostMapping("/productos/guardar")
+    @PostMapping("/productos/nuevo")
     public String guardarProducto(Producto producto){
         productoRepository.save(producto);
         return "redirect:/productos";
     }
 
+    @GetMapping("/productos/editar/{id}")
+    public String mostrarFormularioDeModificarProducto(@PathVariable("id") Integer id, Model modelo){
+        List<Categoria>listaCategorias = categoriaRepository.findAll();
+        Producto producto= productoRepository.findById(id).get();
+
+        modelo.addAttribute("producto",producto);
+        modelo.addAttribute("listaCategorias",listaCategorias);
+        return "producto_formulario";
+    }
+
+    @PostMapping("/productos/editar/{id}")
+    public String actualizarroducto(@PathVariable("id") Integer id, Producto producto){
+        Producto productoBD= productoRepository.findById(id).get();
+
+        productoBD.setCategoria(producto.getCategoria());
+        productoBD.setNombre(producto.getNombre());
+        productoBD.setPrecio(producto.getPrecio());
+
+        productoRepository.save(productoBD);
+
+        return "redirect:/productos";
+    }
+
+    @GetMapping("/productos/borrar/{id}")
+    public String borrarProductos(@PathVariable Integer id){
+        productoRepository.deleteById(id);
+        return "redirect:/productos";
+    }
 
 }

@@ -19,7 +19,7 @@ public class Producto {
     private String nombre;
 
     private float precio;
-    @ManyToOne //Un producto va a pertenecer a MUCHAS categorias
+    @ManyToOne //MUCHOS productos van a poder estar en UNA sola categoría
     @JoinColumn(name="categoria_id")//Defino la columna con la que me voy a "unir"
     private Categoria categoria;
 

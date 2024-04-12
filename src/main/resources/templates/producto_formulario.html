@@ -81,12 +81,15 @@
     <section id="inicio-producto">
         <div id="div-hero-producto">
             <div data-aos="fade-up" id="div-inicio-producto">
-                <h1 class="titulo-inicio">Nuevo Producto</h1>
-                <h5 class="subtitulo-inicio">Aquí puedes crear y agregar un nuevo producto</h5>
+                <h1 th:if="${producto.id == null}" class="titulo-inicio">Nuevo Producto</h1>
+                <h1 th:unless="${producto.id == null}" class="titulo-inicio">Editar Producto</h1>
+                <h5 th:if="${producto.id == null}" class="subtitulo-inicio">Aquí puedes crear y agregar un nuevo producto</h5>
+                <h5 th:unless="${producto.id == null}" class="subtitulo-inicio">Aquí puedes editar el producto</h5>
             </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
-            <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+            <!--Se borró el renderizado para guardar el producto-->
+            <form th:object="${producto}" method="post">
                 <label class="form-label" style="font-size: 20px;">Nombre del Producto:&nbsp;</label>
                 <input class="form-control input-nombre" th:field="*{nombre}" type="text" required>
                 <label class="form-label" style="font-size: 20px;">Precio del Producto:&nbsp;</label>
@@ -101,6 +104,8 @@
             </form>
         </div>
     </section>
+
+
     <footer class="text-center bg-dark">
         <div class="container text-white py-4 py-lg-5" id="footer-container" style="height: 136px;">
             <ul class="list-inline">
