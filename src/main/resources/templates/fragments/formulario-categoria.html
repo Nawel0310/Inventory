@@ -20,8 +20,8 @@
     <section id="inicio-categoria">
         <div id="div-hero-categoria">
             <div data-aos="fade-up" id="div-inicio-categoria">
-                <h1 class="titulo-inicio">Nueva Categoría</h1>
-                <h5 class="subtitulo-inicio">Aquí puedes crear y agregar una nueva categoría</h5>
+                <h1 class="titulo-inicio">[[${categoria.id ne null ? 'Editar Categoría' : 'Nueva Categoría'}]]</h1>
+                <h5 class="subtitulo-inicio">[[${categoria.id ne null ? 'Editar y guardar la categoría' : 'Aquí puedes crear y agregar una nueva categoría'}]]</h5>
             </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
@@ -30,7 +30,7 @@
                 <label class="form-label" style="font-size: 20px;">Nombre de la Categoría:&nbsp;</label>
                 <input th:field="*{nombre}" id="nombre" name="nombre" class="form-control input-nombre" type="text">
                 <div id="botones-formulario-categoria">
-                    <a th:href="@{/}" class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</a>
+                    <a th:href="@{/categorias}" class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</a>
                     <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>
             </form>
         </div>
