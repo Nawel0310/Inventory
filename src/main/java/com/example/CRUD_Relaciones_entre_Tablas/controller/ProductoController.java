@@ -54,7 +54,7 @@ public class ProductoController {
     }
 
     @PostMapping("/productos/editar/{id}")
-    public String actualizarroducto(@PathVariable("id") Integer id, Producto producto){
+    public String actualizaProducto(@PathVariable("id") Integer id, Producto producto){
         Producto productoBD= productoRepository.findById(id).get();
 
         productoBD.setCategoria(producto.getCategoria());
