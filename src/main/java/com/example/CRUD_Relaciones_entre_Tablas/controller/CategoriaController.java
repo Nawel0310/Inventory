@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CategoriaController {
@@ -30,7 +32,27 @@ public class CategoriaController {
 
     @PostMapping("/categorias/guardar")
     public String guardarCategoria(Categoria categoria){
-        categoriaRepository.save(categoria);
+        if (categoria.getId()!=null){//Formulario de Edición
+            Categoria categoriaBD = categoriaRepository.findById(categoria.getId()).get();
+            categoriaBD.setNombre(categoria.getNombre());
+            categoriaRepository.save(categoriaBD);
+        }
+        else {
+            categoriaRepository.save(categoria);
+        }
+        return "redirect:/categorias";
+    }
+
+    @GetMapping("/categorias/editar/{id}")
+    public String editarCategoria(@PathVariable Integer id, Model model){
+        Categoria categoriaBD= categoriaRepository.findById(id).get();
+        model.addAttribute("categoria",categoriaBD);
+        return "categoria_formulario";
+    }
+
+    @PostMapping("/categorias/borrar/{id}")
+    public String borrarCategoria(@PathVariable Integer id){
+        categoriaRepository.deleteById(id);
         return "redirect:/categorias";
     }
 
