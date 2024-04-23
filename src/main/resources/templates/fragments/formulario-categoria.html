@@ -26,7 +26,7 @@
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
             <form th:action="@{/categorias/guardar}" th:object="${categoria}" method="post">
-                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{id}" /> <!--Me aseguro que el ID de la categoría sea procesado en la solicitud-->
                 <label class="form-label" style="font-size: 20px;">Nombre de la Categoría:&nbsp;</label>
                 <input th:field="*{nombre}" id="nombre" name="nombre" class="form-control input-nombre" type="text">
                 <div id="botones-formulario-categoria">

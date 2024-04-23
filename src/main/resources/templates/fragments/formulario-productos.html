@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alata&amp;display=swap">
+    <link rel="stylesheet" href="/assets/css/aos.min.css">
+    <link rel="stylesheet" href="/assets/css/Footer-Dark-icons.css">
+    <link rel="stylesheet" href="/assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="/assets/css/Sidebar-Menu-sidebar-1.css">
+    <link rel="stylesheet" href="/assets/css/Sidebar-Menu-sidebar.css">
+    <link rel="stylesheet" href="/assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<div th:fragment="form_productos">
+    <section id="inicio-producto">
+        <div id="div-hero-producto">
+            <div data-aos="fade-up" id="div-inicio-producto">
+                <h1 class="titulo-inicio">[[${producto.id ne null ? 'Editar Producto' : 'Nuevo Producto'}]]</h1>
+                <h5 class="subtitulo-inicio">[[${producto.id ne null ? 'Editar y guardar el producto' : 'Aquí puedes crear y agregar un nuevo producto'}]]</h5>
+            </div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="50" class="formulario">
+            <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                <label class="form-label" style="font-size: 20px;">Nombre del Producto:&nbsp;</label>
+                <input th:field="*{nombre}" class="form-control input-nombre"  type="text">
+                <label class="form-label" style="font-size: 20px;">Precio del Producto:&nbsp;</label>
+                <input th:field="*{precio}" class="form-control input-number" type="number">
+                <label class="form-label" style="font-size: 20px;">Categoría del Producto:&nbsp;</label>
+                <select class="form-select input-categoria" id="categoria" name="categoria">
+                    <option th:each="categoria : ${listaCategorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+                </select>
+                <div id="botones-formulario-categoria">
+                    <button th:href="@{/productos}" class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button>
+                    <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>
+            </form>
+        </div>
+    </section>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/aos.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/Sidebar-Menu-sidebar.js"></script>
+</div>
+
+</html>

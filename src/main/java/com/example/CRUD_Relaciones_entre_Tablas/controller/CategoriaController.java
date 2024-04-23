@@ -32,7 +32,7 @@ public class CategoriaController {
 
     @PostMapping("/categorias/guardar")
     public String guardarCategoria(Categoria categoria){
-        if (categoria.getId()!=null){//Formulario de Edición
+        if (categoria.getId()!=null){//Formulario de Edición, verifica que el ID sea procesado en la solicitud
             Categoria categoriaBD = categoriaRepository.findById(categoria.getId()).get();
             categoriaBD.setNombre(categoria.getNombre());
             categoriaRepository.save(categoriaBD);

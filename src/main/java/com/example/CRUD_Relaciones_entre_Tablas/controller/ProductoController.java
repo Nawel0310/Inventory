@@ -28,7 +28,7 @@ public class ProductoController {
     }
 
     @GetMapping("/productos/nuevo")
-    public String mostrarFormularioDeNuevoProducto(Model modelo){
+    public String nuevoProducto(Model modelo){
         List<Categoria>listaCategorias = categoriaRepository.findAll();
 
         modelo.addAttribute("producto",new Producto());
@@ -37,37 +37,32 @@ public class ProductoController {
         return "producto_formulario";
     }
 
-    @PostMapping("/productos/nuevo")
-    public String guardarProducto(Producto producto){
-        productoRepository.save(producto);
-        return "redirect:/productos";
-    }
-
     @GetMapping("/productos/editar/{id}")
-    public String mostrarFormularioDeModificarProducto(@PathVariable("id") Integer id, Model modelo){
+    public String editarProducto(@PathVariable Integer id, Model model){
         List<Categoria>listaCategorias = categoriaRepository.findAll();
-        Producto producto= productoRepository.findById(id).get();
-
-        modelo.addAttribute("producto",producto);
-        modelo.addAttribute("listaCategorias",listaCategorias);
-        return "producto_formulario";
-    }
-
-    @PostMapping("/productos/editar/{id}")
-    public String actualizaProducto(@PathVariable("id") Integer id, Producto producto){
         Producto productoBD= productoRepository.findById(id).get();
 
-        productoBD.setCategoria(producto.getCategoria());
-        productoBD.setNombre(producto.getNombre());
-        productoBD.setPrecio(producto.getPrecio());
-
-        productoRepository.save(productoBD);
-
+        model.addAttribute("producto",productoBD);
+        model.addAttribute("listaCategorias",listaCategorias);
+        return "producto_formulario";
+    }
+    @PostMapping("/productos/guardar")
+    public String guardarProducto(Producto producto){
+        if (producto.getId()!=null){//Formulario de Edición, verifica que el ID sea procesado en la solicitud
+            Producto productoBD = productoRepository.findById(producto.getId()).get();
+            productoBD.setPrecio(producto.getPrecio());
+            productoBD.setCategoria(producto.getCategoria());
+            productoBD.setNombre(producto.getNombre());
+            productoRepository.save(productoBD);
+        }
+        else {
+            productoRepository.save(producto);
+        }
         return "redirect:/productos";
     }
 
-    @GetMapping("/productos/borrar/{id}")
-    public String borrarProductos(@PathVariable Integer id){
+    @PostMapping("/productos/borrar/{id}")
+    public String borrarProducto(@PathVariable Integer id){
         productoRepository.deleteById(id);
         return "redirect:/productos";
     }
