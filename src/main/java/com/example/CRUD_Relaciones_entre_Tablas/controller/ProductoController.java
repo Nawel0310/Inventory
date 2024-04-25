@@ -46,13 +46,16 @@ public class ProductoController {
         model.addAttribute("listaCategorias",listaCategorias);
         return "producto_formulario";
     }
+
     @PostMapping("/productos/guardar")
     public String guardarProducto(Producto producto){
         if (producto.getId()!=null){//Formulario de Edición, verifica que el ID sea procesado en la solicitud
             Producto productoBD = productoRepository.findById(producto.getId()).get();
+
             productoBD.setPrecio(producto.getPrecio());
             productoBD.setCategoria(producto.getCategoria());
             productoBD.setNombre(producto.getNombre());
+
             productoRepository.save(productoBD);
         }
         else {

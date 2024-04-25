@@ -21,8 +21,8 @@ public class Marca {
     @Column(length=45, nullable = false, unique=true)
     private String nombre;
 
-    @OneToMany //UNA marca va a tener MUCHAS categorias
-    @JoinColumn (name = "marca_id")
+    @OneToMany //Una marca va a poder tener muchas categorias
+    @JoinColumn(name = "categoria_id")//Une con la columna categoria_id
     private List<Categoria> categorias = new ArrayList<>();
     public Marca(Integer id) {
         this.id = id;
