@@ -22,7 +22,7 @@ public class Marca {
     private String nombre;
 
     @OneToMany //Una marca va a poder tener muchas categorias
-    @JoinColumn(name = "categoria_id")//Une con la columna categoria_id
+    @JoinColumn(name = "marca_id")//Une con la columna categoria_id
     private List<Categoria> categorias = new ArrayList<>();
     public Marca(Integer id) {
         this.id = id;
