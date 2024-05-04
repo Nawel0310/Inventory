@@ -20,22 +20,23 @@
     <section id="inicio-marca">
         <div id="div-hero-marca">
             <div data-aos="fade-up" id="div-inicio-marca">
-                <h1 class="titulo-inicio">Nueva Marca</h1>
-                <h5 class="subtitulo-inicio">Aquí puedes crear y agregar una nueva marca</h5>
+                <h1 class="titulo-inicio">[[${marca.id ne null ? 'Editar Marca' : 'Nueva Marca'}]]</h1>
+                <h5 class="subtitulo-inicio">[[${marca.id ne null ? 'Editar y guardar la marca' : 'Aquí puedes crear y agregar una nueva marca'}]]</h5>
             </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
             <form th:action="@{/marcas/guardar}" th:object="${marca}" method="post">
-                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{id}" th:value="${marca.id}"/>
                 <label class="form-label" style="font-size: 20px;">Nombre de la Marca:&nbsp;</label>
                 <input class="form-control input-nombre" type="text" th:field="*{nombre}">
                 <label class="form-label" style="font-size: 20px;">Categoría/s de la Marca:&nbsp;</label>
+
+
                 <div th:each="categoria : ${listaCategorias}">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" th:id="'categoria-' + ${categoria.id}" th:value="${categoria.id}" th:field="*{categorias}">
-                        <label class="form-check-label" th:for="'categoria-' + ${categoria.id}" th:text="${categoria.nombre}"></label>
-                    </div>
+                    <input type="checkbox" th:id="'categoria_' + ${categoria.id}" th:name="*{categorias}" th:field="*{categorias}" th:value="${categoria.id}" />
+                    <label th:for="'categoria_' + ${categoria.id}" th:text="${categoria.nombre}"></label><br/>
                 </div>
+
                 <div id="botones-formulario-categoria">
                     <button th:href="@{/marcas}" class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button>
                     <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>

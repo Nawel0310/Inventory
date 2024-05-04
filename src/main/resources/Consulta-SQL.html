@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta SQL</title>
+</head>
+<body>
+<h1>
+  -- Supongamos que queremos asociar varias categorías ('Electronicos' y 'Accesorios') a la marca con id = @marca_id
+
+  -- Primero, supongamos que hemos insertado una nueva marca y hemos obtenido su ID
+  INSERT INTO marca (nombre) VALUES ('ABCDEF');
+  SET @marca_id = LAST_INSERT_ID();
+
+  -- Ahora, actualizamos las categorías para asociarlas a la marca recién insertada
+  UPDATE categoria
+  SET marca_id = @marca_id
+  WHERE nombre IN ('Electronicos', 'Accesorios');
+
+</h1>
+</body>
+</html>
