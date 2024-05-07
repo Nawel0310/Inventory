@@ -51,19 +51,33 @@ public class MarcaController {
     @PostMapping("/marcas/guardar")
     public String guardarMarca(@ModelAttribute("marca") Marca marca, @RequestParam(value = "categorias", required = false) List<Integer>categoriasId) {
         if (marca.getId() != null) {
-            /*Formulario de edición*/
             Marca marcaDB = marcaRepository.findById(marca.getId()).get();
 
             marcaDB.setNombre(marca.getNombre());
+
+            // Eliminar las categorías que ya no están seleccionadas
+            List<Categoria> categoriasActuales = marcaDB.getCategorias();
+            if (categoriasActuales != null) {
+                for (Categoria categoria : categoriasActuales) {
+                    if (categoriasId == null || !categoriasId.contains(categoria.getId())) {
+                        categoria.setMarca(null); // Desvincular la categoría de la marca
+                        categoriaRepository.save(categoria);
+                    }
+                }
+            }
+
+            // Agregar las nuevas categorías seleccionadas
             if (categoriasId != null) {
-                List<Categoria> categoriasElegidas = categoriaRepository.findAllById(categoriasId);
-                for (Categoria categoria : categoriasElegidas) {
+                List<Categoria> categoriasNuevas = categoriaRepository.findAllById(categoriasId);
+                for (Categoria categoria : categoriasNuevas) {
                     categoria.setMarca(marcaDB);
                     categoriaRepository.save(categoria);
                 }
             }
+
             marcaRepository.save(marcaDB);
         } else {
+            /*Formulario Nueva Marca:*/
             marcaRepository.save(marca);
             if (categoriasId != null) {
                 List<Categoria> categoriasElegidas = categoriaRepository.findAllById(categoriasId);
