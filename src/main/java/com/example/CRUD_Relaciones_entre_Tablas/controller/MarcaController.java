@@ -38,10 +38,12 @@ public class MarcaController {
     //MEJORAR
     @GetMapping("/marcas/editar/{id}")
     public String editarMarca(@PathVariable("id") Integer id, Model modelo){
-        List<Categoria>listaCategorias = categoriaRepository.findAll();
-        Marca marcaBD = marcaRepository.findById(id).get();
+        Marca marcaDB = marcaRepository.findById(id).get();
 
-        modelo.addAttribute("marca",marcaBD);
+        //Obtenemos la lista de categorias
+        List<Categoria> listaCategorias = categoriaRepository.findAll();
+
+        modelo.addAttribute("marca",marcaDB);
         modelo.addAttribute("listaCategorias",listaCategorias);
         return "marca_formulario";
     }
@@ -74,10 +76,18 @@ public class MarcaController {
         return "redirect:/marcas";
     }
 
-    //MEJORAR
+
     @GetMapping("/marcas/borrar/{id}")
     public String borrarMarca(@PathVariable Integer id){
-        marcaRepository.deleteById(id);
+        Marca marcaDB = marcaRepository.findById(id).get();
+
+        //Debemos desvincular todas las posibles categorias
+       List<Categoria> categorias = categoriaRepository.findByMarca(marcaDB);
+       for (Categoria categoria : categorias){
+           categoria.setMarca(null);
+           categoriaRepository.save(categoria);
+       }
+       marcaRepository.delete(marcaDB);
         return "redirect:/marcas";
     }
 

@@ -26,15 +26,14 @@
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
             <form th:action="@{/marcas/guardar}" th:object="${marca}" method="post">
-                <input type="hidden" th:field="*{id}" th:value="${marca.id}"/>
+                <input type="hidden" th:field="*{id}" />
                 <label class="form-label" style="font-size: 20px;">Nombre de la Marca:&nbsp;</label>
-                <input class="form-control input-nombre" type="text" th:field="*{nombre}">
+                <input class="form-control input-nombre" type="text" th:field="*{nombre}" />
                 <label class="form-label" style="font-size: 20px;">Categoría/s de la Marca:&nbsp;</label>
 
-
                 <div th:each="categoria : ${listaCategorias}">
-                    <input type="checkbox" th:id="'categoria_' + ${categoria.id}" th:name="*{categorias}" th:field="*{categorias}" th:value="${categoria.id}" />
-                    <label th:for="'categoria_' + ${categoria.id}" th:text="${categoria.nombre}"></label><br/>
+                    <input type="checkbox" th:id="'categoria_' + ${categoria.id}" th:name="categorias" th:value="${categoria.id}" th:checked="${marca.categorias.contains(categoria)}" />
+                    <label th:for="'categoria_' + ${categoria.id}" th:text="${categoria.nombre}"></label><br />
                 </div>
 
                 <div id="botones-formulario-categoria">
