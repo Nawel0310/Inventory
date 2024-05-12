@@ -35,9 +35,42 @@
                 <select class="form-select input-categoria" id="categoria" name="categoria">
                     <option th:each="categoria : ${listaCategorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
                 </select>
+
+                <!--Detalles existentes-->
+                <th:block th:unless="${producto.id==null}" th:each="detalle,status: ${producto.detalles}">
+                    <input type="hidden" name="detalleID" th:value="${detalle.id}">
+                <div class="detalles-producto">
+                    <label class="form-label" style="font-size: 20px;">Detalles #[[${status.count}]]:&nbsp;</label>
+                    <div class="d-flex flex-row justify-content-center">
+                        <input class="form-control input-detalles" type="text" placeholder="Nombre" th:name="detallesNombre" th:value="${detalle.nombre}" required>
+                        <input class="form-control input-detalles" type="text" placeholder="Valor" th:name="detallesValor" th:value="${detalle.valor}" required>
+                    </div>
+                </div>
+                </th:block>
+
+                <!--Nuevo detalles-->
+                <th:block th:if="${producto.id==null}">
+                    <div class="detalles-producto">
+                        <label class="form-label" style="font-size: 20px;">Detalles #1:&nbsp;</label>
+                        <div class="d-flex flex-row justify-content-center">
+                            <input class="form-control input-detalles" type="text" placeholder="Nombre" th:name="detallesNombre"  required>
+                            <input class="form-control input-detalles" type="text" placeholder="Valor" th:name="detallesValor" required>
+                        </div>
+
+                        <label class="form-label" style="font-size: 20px;">Detalles #2:&nbsp;</label>
+                        <div class="d-flex flex-row justify-content-center">
+                            <input class="form-control input-detalles" type="text" placeholder="Nombre" th:name="detallesNombre"  required>
+                            <input class="form-control input-detalles" type="text" placeholder="Valor" th:name="detallesValor" required>
+                        </div>
+                    </div>
+                </th:block>
+
                 <div id="botones-formulario-categoria">
                     <button th:href="@{/productos}" class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button>
-                    <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>
+                    <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button>
+                </div>
+
+
             </form>
         </div>
     </section>

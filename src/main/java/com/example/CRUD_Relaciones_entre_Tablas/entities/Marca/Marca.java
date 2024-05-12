@@ -20,8 +20,7 @@ public class Marca {
 
     @Column(length=45, nullable = false, unique=true)
     private String nombre;
-
-    @OneToMany(mappedBy = "marca")//Une la columna marca a la tabla de la entidad Categoria
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)//Mapeado con el objeto "marca" de categoria
     private List<Categoria> categorias = new ArrayList<>();
     public Marca(Integer id) {
         this.id = id;

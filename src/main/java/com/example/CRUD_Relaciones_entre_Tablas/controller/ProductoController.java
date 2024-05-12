@@ -3,7 +3,10 @@ package com.example.CRUD_Relaciones_entre_Tablas.controller;
 import com.example.CRUD_Relaciones_entre_Tablas.entities.Categoria.Categoria;
 import com.example.CRUD_Relaciones_entre_Tablas.entities.Producto.Producto;
 import com.example.CRUD_Relaciones_entre_Tablas.repository.CategoriaRepository;
+import com.example.CRUD_Relaciones_entre_Tablas.repository.ProductoDetallesRepository;
 import com.example.CRUD_Relaciones_entre_Tablas.repository.ProductoRepository;
+import com.sun.net.httpserver.spi.HttpServerProvider;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,9 @@ public class ProductoController {
     private ProductoRepository productoRepository;
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private ProductoDetallesRepository productoDetallesRepository;
 
     @GetMapping("/productos")
     public String listarProductos(Model modelo){
@@ -48,7 +54,12 @@ public class ProductoController {
     }
 
     @PostMapping("/productos/guardar")
-    public String guardarProducto(Producto producto){
+    public String guardarProducto(Producto producto, HttpServletRequest request){
+        String[] detallesIDs= request.getParameterValues("detallesID");
+        String[] detallesNombre= request.getParameterValues("detallesNombre");
+        String[] detallesValor= request.getParameterValues("detallesValor");
+
+
         if (producto.getId()!=null){//Formulario de Edición, verifica que el ID sea procesado en la solicitud
             Producto productoBD = productoRepository.findById(producto.getId()).get();
 
@@ -56,9 +67,18 @@ public class ProductoController {
             productoBD.setCategoria(producto.getCategoria());
             productoBD.setNombre(producto.getNombre());
 
+            productoDetallesRepository.deleteByProductoId(productoBD.getId());
+
+            for (int i=0;i< detallesNombre.length;i++){
+                productoBD.anadirDetalles(detallesNombre[i],detallesValor[i]);
+            }
+
             productoRepository.save(productoBD);
         }
-        else {
+        else {//Formulario de nuevo producto
+            for (int i=0;i< detallesNombre.length;i++){
+                producto.anadirDetalles(detallesNombre[i],detallesValor[i]);
+            }
             productoRepository.save(producto);
         }
         return "redirect:/productos";

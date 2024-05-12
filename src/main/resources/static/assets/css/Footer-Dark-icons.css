@@ -231,3 +231,8 @@ hr {
   box-shadow: 3px 3px 0px var(--bs-btn-hover-border-color);
 }
 
+.input-detalles {
+  border-style: none;
+  margin-left: 3px;
+}
+

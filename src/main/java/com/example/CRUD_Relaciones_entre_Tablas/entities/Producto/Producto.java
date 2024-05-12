@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,8 +23,11 @@ public class Producto {
 
     private float precio;
     @ManyToOne //MUCHOS productos van a poder estar en UNA sola categoría
-    @JoinColumn(name="categoria_id")//Defino la columna con la que me voy a "unir"
+    @JoinColumn(name="categoria_id")//Defino la columna que va a representar la relacion con Categoria
     private Categoria categoria;
+
+    @OneToMany (mappedBy = "producto",cascade = CascadeType.ALL)
+    private List<ProductoDetalles> detalles = new ArrayList<>();
 
     public Producto(String nombre, float precio, Categoria categoria) {
         this.nombre = nombre;
@@ -31,5 +37,14 @@ public class Producto {
 
     public Producto(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void anadirDetalles(String nombre, String valor){
+        this.detalles.add(new ProductoDetalles(nombre,valor,this));
+        //"this" hace referencia a la clase en donde estamos, en este caso Producto
+    }
+
+    public void setDetalles(Integer id, String nombre, String valor){
+        this.detalles.add(new ProductoDetalles(nombre,valor,this));
     }
 }

@@ -32,8 +32,8 @@
                 <label class="form-label" style="font-size: 20px;">Categoría/s de la Marca:&nbsp;</label>
 
                 <div th:each="categoria : ${listaCategorias}">
-                    <input type="checkbox" th:id="'categoria_' + ${categoria.id}" th:name="categorias" th:value="${categoria.id}" th:checked="${marca.categorias.contains(categoria)}" />
-                    <label th:for="'categoria_' + ${categoria.id}" th:text="${categoria.nombre}"></label><br />
+                    <input type="checkbox" th:name="categorias" th:value="${categoria.id}" th:checked="${marca.categorias.contains(categoria)}" />
+                    <label th:text="${categoria.nombre}"></label><br />
                 </div>
 
                 <div id="botones-formulario-categoria">

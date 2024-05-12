@@ -26,7 +26,6 @@ public class MarcaController {
         return "marcas";
     }
 
-
     @GetMapping("/marcas/nuevo")
     public String nuevaMarca(Model modelo){
         List<Categoria> listaCategorias = categoriaRepository.findAll();
@@ -35,7 +34,7 @@ public class MarcaController {
         modelo.addAttribute("marca",new Marca());
         return "marca_formulario";
     }
-    //MEJORAR
+
     @GetMapping("/marcas/editar/{id}")
     public String editarMarca(@PathVariable("id") Integer id, Model modelo){
         Marca marcaDB = marcaRepository.findById(id).get();
