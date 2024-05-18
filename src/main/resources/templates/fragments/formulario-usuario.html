@@ -16,30 +16,34 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
-<div th:fragment="form_marca">
-    <section id="inicio-marca">
-        <div id="div-hero-marca">
-            <div data-aos="fade-up" id="div-inicio-marca">
-                <h1 class="titulo-inicio">[[${marca.id ne null ? 'Editar Marca' : 'Nueva Marca'}]]</h1>
-                <h5 class="subtitulo-inicio">[[${marca.id ne null ? 'Editar y guardar la marca' : 'Aquí puedes crear y agregar una nueva marca'}]]</h5>
+<div th:fragment="form_usuarios">
+    <section id="inicio-usuario">
+        <div id="div-hero-usuario">
+            <div data-aos="fade-up" id="div-inicio-usuario">
+                <h1 class="titulo-inicio">Nuevo Usuario</h1>
+                <h5 class="subtitulo-inicio">Aquí puedes registrar un nuevo usuario</h5>
             </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
-            <form th:action="@{/marcas/guardar}" th:object="${marca}" method="post">
-                <input type="hidden" th:field="*{id}" />
-                <label class="form-label" style="font-size: 20px;">Nombre de la Marca:&nbsp;</label>
-                <input class="form-control input-nombre" type="text" th:field="*{nombre}" />
+            <form th:action="@{/usuarios/guardar}" th:object="${usuario}">
 
-                <label class="form-label" style="font-size: 20px;">Categoría/s de la Marca:&nbsp;</label>
-                <div th:each="categoria : ${listaCategorias}">
-                    <input type="checkbox" th:name="categorias" th:value="${categoria.id}" th:checked="${marca.categorias.contains(categoria)}" />
-                    <label th:text="${categoria.nombre}"></label><br />
+                <label class="form-label" style="font-size: 20px;">E-mail:&nbsp;</label>
+                <input class="form-control input-nombre" type="email" th:field="*{email}">
+
+                <label class="form-label" style="font-size: 20px;">Contraseña:&nbsp;</label>
+                <input class="form-control input-number" type="password" th:field="*{password}" >
+
+                <label class="form-label" style="font-size: 20px;">Roles del Usuario:</label>
+                <div th:each="rol : ${listaRoles}">
+                    <input type="checkbox" th:name="roles" th:value="${rol.id}" th:checked="${usuario.roles.contains(rol)}" />
+                    <label th:text="${rol.nombre}"></label><br />
                 </div>
 
                 <div id="botones-formulario-categoria">
-                    <button th:href="@{/marcas}" class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button>
+                    <button class="btn btn-secondary" id="boton-cancelar" type="reset">Cancelar</button>
                     <button class="btn btn-success" id="boton-envio" type="submit">Guardar</button></div>
             </form>
+
         </div>
     </section>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>

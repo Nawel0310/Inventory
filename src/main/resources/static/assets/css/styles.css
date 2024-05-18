@@ -26,6 +26,11 @@ footer {
   margin-bottom: 40px;
 }
 
+#div-inicio-usuario {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 #div-inicio-marca {
   text-align: center;
   margin-bottom: 40px;
@@ -72,6 +77,15 @@ footer {
 }
 
 #inicio-producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: center;
+  height: 603px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("/assets/img/inventory2.png") center / cover no-repeat;
+}
+
+#inicio-usuario {
   display: flex;
   flex-direction: column;
   justify-content: initial;
