@@ -26,7 +26,7 @@ public class Producto {
     @JoinColumn(name="categoria_id")//Defino la columna que va a representar la relacion con Categoria
     private Categoria categoria;
 
-    @OneToMany (mappedBy = "producto",cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "producto",cascade = CascadeType.ALL) //Cascade permite que todos los hijos sean persistidos
     private List<ProductoDetalles> detalles = new ArrayList<>();
 
     public Producto(String nombre, float precio, Categoria categoria) {
