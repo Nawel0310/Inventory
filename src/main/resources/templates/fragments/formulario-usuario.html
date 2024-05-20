@@ -20,12 +20,14 @@
     <section id="inicio-usuario">
         <div id="div-hero-usuario">
             <div data-aos="fade-up" id="div-inicio-usuario">
-                <h1 class="titulo-inicio">Nuevo Usuario</h1>
-                <h5 class="subtitulo-inicio">Aquí puedes registrar un nuevo usuario</h5>
+                <h1 class="titulo-inicio">[[${usuario.id ne null ? 'Editar Usuario' : 'Nuevo Usuario'}]]</h1>
+                <h5 class="subtitulo-inicio">[[${usuario.id ne null ? 'Editar y guardar el usuario' : 'Aquí puedes crear y agregar un nuevo usuario'}]]</h5>
             </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
-            <form th:action="@{/usuarios/guardar}" th:object="${usuario}">
+            <form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
+
+                <input type="hidden" th:field="*{id}" th:value="${usuario.id}" />
 
                 <label class="form-label" style="font-size: 20px;">E-mail:&nbsp;</label>
                 <input class="form-control input-nombre" type="email" th:field="*{email}">

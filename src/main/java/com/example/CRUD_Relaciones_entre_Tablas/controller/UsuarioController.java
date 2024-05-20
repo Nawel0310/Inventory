@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -37,7 +39,26 @@ public class UsuarioController {
         return "usuario_formulario";
     }
 
+    @PostMapping("/usuarios/guardar")
+    public String guardarUsuario(Usuario usuario){
+        usuarioRepository.save(usuario);
+        return "redirect:/usuarios";
+    }
 
+    @GetMapping("usuarios/editar/{id}")
+    public String editarUsuario(@PathVariable("id") Integer id, Model modelo){
+        Usuario usuarioDB = usuarioRepository.findById(id).get();
+        modelo.addAttribute("usuario",usuarioDB);
 
+        List<Rol> listaRoles= rolRepository.findAll();
+        modelo.addAttribute("listaRoles",listaRoles);
 
+        return "usuario_formulario";
+    }
+
+    @PostMapping("/usuarios/borrar/{id}")
+    public String borrarUsuario(@PathVariable Integer id){
+        usuarioRepository.deleteById(id);
+        return "redirect:/usuarios";
+    }
 }

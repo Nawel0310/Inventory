@@ -26,11 +26,15 @@
         </div>
         <div data-aos="fade-up" data-aos-delay="50" class="formulario">
             <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+
                 <input type="hidden" th:field="*{id}" th:value="${producto.id}" />
+
                 <label class="form-label" style="font-size: 20px;">Nombre del Producto:&nbsp;</label>
                 <input th:field="*{nombre}" class="form-control input-nombre"  type="text">
+
                 <label class="form-label" style="font-size: 20px;">Precio del Producto:&nbsp;</label>
                 <input th:field="*{precio}" class="form-control input-number" type="number">
+
                 <label class="form-label" style="font-size: 20px;">Categoría del Producto:&nbsp;</label>
                 <select class="form-select input-categoria" id="categoria" name="categoria">
                     <option th:each="categoria : ${listaCategorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
