@@ -42,6 +42,10 @@ public class Usuario {
         this.roles=roles;
     }
 
+    public Usuario(Integer id) {
+        this.id = id;
+    }
+
     public Usuario (String email, String password){
         this.email=email;
         this.password=password;
@@ -55,4 +59,10 @@ public class Usuario {
         this.roles.remove(rol);
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "email='" + email + '\'' +
+                '}';
+    }
 }

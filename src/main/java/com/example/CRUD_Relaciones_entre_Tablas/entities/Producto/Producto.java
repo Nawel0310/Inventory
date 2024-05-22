@@ -35,6 +35,10 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    public Producto(Integer id) {
+        this.id = id;
+    }
+
     public Producto(String nombre) {
         this.nombre = nombre;
     }
@@ -46,5 +50,12 @@ public class Producto {
 
     public void setDetalles(Integer id, String nombre, String valor){
         this.detalles.add(new ProductoDetalles(nombre,valor,this));
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                '}';
     }
 }
